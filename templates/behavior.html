@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Driver Behavior</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #121212;
+            color: #e0e0e0;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        aside#sidebar {
+            background-color: #1e1e1e;
+            height: 100vh;
+            padding: 15px;
+        }
+
+        .sidebar-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            color: #e0e0e0;
+        }
+
+        .sidebar-brand {
+            display: flex;
+            align-items: center;
+        }
+
+        .sidebar-brand span {
+            margin-right: 10px;
+            font-size: 24px;
+        }
+
+        .sidebar-list {
+            list-style: none;
+        }
+
+        .sidebar-list-item {
+            margin: 15px 0;
+        }
+
+        .sidebar-list-item a {
+            color: #e0e0e0;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .sidebar-list-item a span {
+            margin-right: 10px;
+        }
+
+        .data-box {
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #1e1e1e;
+        }
+
+        th, td {
+            padding: 12px;
+            border: 1px solid #333;
+            text-align: left;
+            color: #e0e0e0;
+        }
+
+        th {
+            background-color: #333;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        @media (max-width: 768px) {
+            .grid-container {
+                grid-template-columns: 1fr;
+            }
+
+            aside#sidebar {
+                height: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="grid-container">
+        <!-- Sidebar -->
+        <aside id="sidebar">
+            <div class="sidebar-title">
+                <div class="sidebar-brand">
+                    <span class="material-icons-outlined">electric_car</span> EV FLEET
+                </div>
+                <span class="material-icons-outlined" onclick="closeSidebar()">close</span>
+            </div>
+
+            <ul class="sidebar-list">
+                <li class="sidebar-list-item"><a href="index"><span class="material-icons-outlined">library_books</span> EV-Introduction</a></li>
+                <li class="sidebar-list-item"><a href="dataset"><span class="material-icons-outlined">dataset</span> DataSet</a></li>
+                <li class="sidebar-list-item"><a href="/distribution"><span class="material-icons-outlined">show_chart</span> Distribution</a></li>
+                <li class="sidebar-list-item"><a href="/relation"><span class="material-icons-outlined">account_tree</span> Relationship</a></li>
+                <li class="sidebar-list-item"><a href="/status"><span class="material-icons-outlined">check_circle</span> Status Count</a></li>
+                <li class="sidebar-list-item"><a href="/pie"><span class="material-icons-outlined">donut_large</span> Pie Chart</a></li>
+                <li class="sidebar-list-item"><a href="/predict"><span class="material-icons-outlined">analytics</span> Prediction</a></li>
+                <li class="sidebar-list-item"><a href="/maintenance"><span class="material-icons-outlined">build</span> Maintenance</a></li>
+                <li class="sidebar-list-item"><a href="/behavior"><span class="material-icons-outlined">people</span> Driver Behavior</a></li>
+                <li class="sidebar-list-item"><a href="/login"><span class="material-icons-outlined">logout</span> Logout</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="data-box">
+            <h1>Overspeeding Drivers</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Driver Name</th>
+                        <th>Top Speed (km/h)</th>
+                        <th>Notify</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for driver in drivers %}
+                    <tr>
+                        <td>{{ driver.Driver }}</td>
+                        <td>{{ driver['Top Speed'] }}</td>
+                        <td>
+                            <button onclick="sendNotification('{{ driver.Driver }}', '{{ driver.Email }}')">Send Notification</button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        function sendNotification(driverName, email) {
+            $.post("/notify", { driver_name: driverName, email: email }, function(response) {
+                if (response.success) {
+                    alert("Notification sent successfully.");
+                } else {
+                    alert("Failed to send notification.");
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

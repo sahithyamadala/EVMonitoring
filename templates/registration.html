@@ -22,6 +22,7 @@
             box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
             border-radius: 10px;
             color: #ffffff;
+            height:95%;
         }
         h2 {
             text-align: center;
@@ -87,11 +88,49 @@
         #terms-link:hover {
             text-decoration: underline;
         }
+        .flash {
+            margin-bottom: 20px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .flash.success {
+            background-color: #28a745;
+            color: white;
+        }
+        .flash.error {
+            background-color: #dc3545;
+            color: white;
+        }
+        .back-to-login {
+            display: block;
+            margin-top: 15px;
+            text-align: center;
+        }
+        .back-to-login a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .back-to-login a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h2>Create an Account</h2>
+
+        <!-- Flash message display -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div>
+                    {% for category, message in messages %}
+                        <div class="flash {{ category }}">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        <!-- Registration form -->
         <form action="/register" method="POST">
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" placeholder="Your Name" required>
@@ -128,8 +167,14 @@
 
             <button type="submit">Create Account</button>
         </form>
+
+        <!-- Back to login link -->
+        <div class="back-to-login">
+            <p>Already have an account? <a href="/login">Back to Login</a></p>
+        </div>
     </div>
 
+    <!-- Modal for Terms and Conditions -->
     <div id="terms-modal" class="modal">
         <div class="modal-content">
             <span class="close-button" id="close-button">&times;</span>
