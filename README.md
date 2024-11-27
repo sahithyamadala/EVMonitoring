@@ -1,0 +1,1 @@
+EV Fleet Monitoring and Predictive Analysis is a Python-based solution designed to enhance the management and operation of electric vehicle (EV) fleets. By predicting the range of EVs, the system provides fleet operators with real-time insights and data-driven recommendations![image](https://github.com/user-attachments/assets/7a1e4458-0f12-4002-8c65-d93b44694f0c)
