@@ -431,7 +431,8 @@ def status():
                  y="Count", 
                  title=f"{status_type} Count (Random Entry per Vehicle)",
                  labels={status_count.columns[0]: status_type, "Count": "Vehicle Count"})
-
+    # Update bar color to orange
+    fig.update_traces(marker_color="#FF7F50")
     fig.update_layout(
         width=1000,  # Chart width
         height=500,  # Chart height
@@ -445,7 +446,6 @@ def status():
     graph_html = pio.to_html(fig, full_html=False)
 
     return render_template("status.html", graph_html=graph_html, status_type=status_type)
-
 
 
 @app.route('/pie')
