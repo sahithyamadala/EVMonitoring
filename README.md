@@ -48,45 +48,28 @@ NumPy
 
 📊 Sample Visualizations
 Powered by Plotly.js
-
 <p align="center"> <img src="https://raw.githubusercontent.com/plotly/dash-sample-apps/main/apps/dash-covid19/images/plotly_graph.png" width="600"/> </p>
 📈 Battery % vs Distance
-
 🚗 Fleet Usage Patterns
-
 ⚠️ Fault Risk Indicators
 
 🚀 Getting Started
 1. Clone the Repository
-bash
-Copy
-Edit
 git clone https://github.com/yourusername/ev-fleet-monitoring.git
 cd ev-fleet-monitoring
 2. Install Dependencies
-bash
-Copy
-Edit
 pip install -r requirements.txt
 3. Set Up MySQL
-bash
-Copy
-Edit
 mysql -u root -p < schema.sql
 🛠 Update your DB credentials in db_config.py.
 
 4. Run the Flask Application
-bash
-Copy
-Edit
 python app.py
 5. Open in Browser
-arduino
-Copy
-Edit
 http://localhost:5000
-
+____________________________________
 🚚 Real-World Applications
+------------------------------------
 📦 EV logistics fleet optimization
 
 🚌 Public EV transportation tracking
