@@ -48,7 +48,6 @@ NumPy
 
 📊 Sample Visualizations
 Powered by Plotly.js
-<p align="center"> <img src="https://raw.githubusercontent.com/plotly/dash-sample-apps/main/apps/dash-covid19/images/plotly_graph.png" width="600"/> </p>
 📈 Battery % vs Distance
 🚗 Fleet Usage Patterns
 ⚠️ Fault Risk Indicators
