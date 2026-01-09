@@ -17,7 +17,7 @@ import plotly.io as pio
 
 # Initialize Flask 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:sahi#3012@localhost/evUSERS'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:password@localhost/evUSERS'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = 'your_secret_key_here'
 
